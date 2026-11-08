@@ -8,7 +8,8 @@
 #  silently disable a system. Use /endfold reload to apply changes (world and database settings need a restart).
 # ---------------------------------------------------------------------------------------------------------------------
 
-config-version: 1
+# Used by Endfold to add new settings to this file automatically after a plugin update. Do not change it.
+config-version: 2
 
 instances:
   solo:

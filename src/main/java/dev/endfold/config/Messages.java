@@ -50,6 +50,11 @@ public final class Messages {
     private void load(String file) {
         File f = new File(plugin.getDataFolder(), file);
         if (!f.exists() && plugin.getResource(file) != null) plugin.saveResource(file, false);
+        try (InputStream in = plugin.getResource(file)) {
+            ConfigUpdater.update(f, in, logger);
+        } catch (Exception e) {
+            logger.warning("Could not update " + file + ": " + e.getMessage());
+        }
         YamlConfiguration defaults = new YamlConfiguration();
         try (InputStream in = plugin.getResource(file)) {
             if (in != null) defaults = YamlConfiguration.loadConfiguration(new InputStreamReader(in, StandardCharsets.UTF_8));
@@ -58,7 +63,7 @@ public final class Messages {
         }
         YamlConfiguration user = f.exists() ? YamlConfiguration.loadConfiguration(f) : new YamlConfiguration();
         user.setDefaults(defaults);
-        for (String key : defaults.getKeys(true)) put(user, key);
+        for (String key : defaults.getKeys(true)) if (!key.equals(ConfigUpdater.VERSION_KEY)) put(user, key);
         for (String key : user.getKeys(true)) put(user, key);
     }
 

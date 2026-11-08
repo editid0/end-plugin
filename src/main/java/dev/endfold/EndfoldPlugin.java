@@ -4,6 +4,7 @@ import dev.endfold.action.Actions;
 import dev.endfold.admin.AdminOps;
 import dev.endfold.command.AdminCommand;
 import dev.endfold.command.EndCommand;
+import dev.endfold.config.ConfigUpdater;
 import dev.endfold.config.EndfoldConfig;
 import dev.endfold.config.Messages;
 import dev.endfold.db.Database;
@@ -71,6 +72,7 @@ public final class EndfoldPlugin extends JavaPlugin {
     public void onEnable() {
         Sync.init(this);
         saveDefaultConfig();
+        updateFile("config.yml");
         loadConfig();
         messages = new Messages(this);
         messages.reload();
@@ -189,6 +191,15 @@ public final class EndfoldPlugin extends JavaPlugin {
             }
             return null;
         });
+    }
+
+    /** Adds settings introduced by newer plugin versions to an existing data-folder file (see {@link ConfigUpdater}). */
+    public void updateFile(String name) {
+        try (java.io.InputStream in = getResource(name)) {
+            ConfigUpdater.update(new java.io.File(getDataFolder(), name), in, getLogger());
+        } catch (java.io.IOException e) {
+            getLogger().warning("Could not read bundled " + name + ": " + e.getMessage());
+        }
     }
 
     private void loadConfig() {

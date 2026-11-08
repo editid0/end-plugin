@@ -14,6 +14,12 @@ Endfold writes three files to `plugins/Endfold/`:
 command prints the number of problems) and replaced with its documented default - an invalid entry never silently
 disables a system. Missing message keys fall back to the bundled defaults.
 
+**Automatic updates.** Each file has a `config-version`. When a new Endfold release ships a higher version, the
+plugin adds the new settings (with their comments) to your existing file on start-up, keeps every value you changed,
+and saves the previous file as `<name>.v<old>.bak`. Removed or custom keys are left alone. A file with a higher
+version than the plugin (downgrade) or one that does not parse is never touched. Do not edit `config-version` yourself.
+Developers: bump `config-version` in the bundled file whenever you add keys to it.
+
 ## `config.yml` summary
 
 | Path | Default | Meaning |

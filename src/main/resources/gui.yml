@@ -1,5 +1,8 @@
 # Endfold GUI texts and icons. All values are MiniMessage. Placeholders like <space> or <player> are filled in by the plugin.
 # Icons: gui.icons.<name> is any item material; invalid names fall back to the built-in default.
+# Used by Endfold to add new texts to this file automatically after a plugin update. Do not change it.
+config-version: 1
+
 gui:
   disabled: "<#F87171>The menu is disabled on this server. Use <white>/end help</white> for the commands."
 

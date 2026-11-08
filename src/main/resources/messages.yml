@@ -1,6 +1,9 @@
 # Endfold messages (MiniMessage format: https://docs.advntr.dev/minimessage/format.html)
 # Placeholders such as <space>, <player> are inserted as plain text and cannot contain formatting.
 
+# Used by Endfold to add new texts to this file automatically after a plugin update. Do not change it.
+config-version: 1
+
 prefix: "<dark_gray>[<gradient:#C084FC:#7DD3FC>Endfold</gradient>]</dark_gray> "
 
 common:
