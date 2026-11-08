@@ -1,0 +1,53 @@
+Endfold integration results, phase 1, server 26.3-2657-9002a55 (MC: 26.3)
+pass=51 fail=0 skip=0
+PASS | api available
+PASS | first portal entry created a SOLO EndSpace owned by Alice | endspace_decb6ad6
+PASS | arrival platform is obsidian | endspace_decb6ad6@100,49,0
+PASS | world name derived from space id
+PASS | bob's first space is auto-selected
+PASS | both worlds are THE_END and distinct | endspace_decb6ad6 / endspace_d0d719eb
+PASS | each world has its own dragon battle
+PASS | seeds differ (RANDOM seed mode) | 6601349126924883205 vs 7229098877124722415
+PASS | block changes are independent
+PASS | alice belongs to 2 EndSpaces
+PASS | bob's selection unaffected by alice
+PASS | alice still in her solo world after selecting (select != enter)
+PASS | returned next to her entry point (not inside the portal) | world@-2,200,-2
+PASS | command teleport of non-member into a private EndSpace is cancelled | world@6,200,6
+PASS | plugin teleport of non-member is cancelled | world@6,200,6
+PASS | router refuses non-member | DENIED
+PASS | carol's portal led to a space she owns | endspace_45d7f58d
+PASS | gateway spawned after kill | gateways=1
+PASS | shared space progress records the kill | kills=1
+PASS | both fighters credited with participation | alice=1 bob=1
+PASS | alice's solo dragon is unaffected
+PASS | solo space progress untouched
+PASS | gateway teleport stayed in bob's EndSpace | endspace_d0d719eb@613,69,-854
+PASS | exit portal returned alice to her overworld entry point | world@-2,200,-2
+PASS | items thrown into an overworld End portal do not reach any End
+PASS | pig in an EndSpace exit portal stays in that EndSpace
+PASS | solo world kept its blocks
+PASS | alice is still a member of bob's group
+PASS | bob's selection still his group
+PASS | vanilla loot table removed from the physical chest
+PASS | physical chest inventory is empty
+PASS | End City chest registered as personal-loot container | 6 registered
+PASS | bob sees a personal inventory (not the block inventory) | - DIAMOND_PICKAXEx1 DIAMONDx1 - - - DIAMONDx1 - - - - - - - - - - - - DIAMOND_CHESTPLATEx1 - DIAMONDx1 - - DIAMONDx1 GOLDEN_HORSE_ARMORx1 -
+PASS | alice gets her own, different loot from the same chest | - - - IRON_INGOTx3 - IRON_INGOTx1 - - IRON_INGOTx1 - - GOLDEN_HORSE_ARMORx1 - - - - GOLD_INGOTx1 COPPER_HORSE_ARMORx1 GOLD_INGOTx1 IRON_SWORDx1 - - GOLD_INGOTx3 - - - GOLD_INGOTx1
+PASS | bob's changes persisted and loot was not re-rolled | - - DIAMONDx1 - - - DIAMONDx1 - - - - - - - - - - - - DIAMOND_CHESTPLATEx1 - DIAMONDx1 - - DIAMONDx1 GOLDEN_HORSE_ARMORx1 -
+PASS | breaking a protected End City chest is cancelled
+PASS | hopper below the chest extracts nothing
+PASS | tracked shulker was killed
+PASS | shulker respawned in place (tagged, same spawn point) | endspace_d0d719eb@1379,106,296
+PASS | main menu is open as a plugin menu | dev.endfold.gui.MainMenu@7d930d4b
+PASS | every click type on a menu is cancelled (pickup, shift, number key, offhand, double-click, bottom shift, drop)
+PASS | drag into a menu is cancelled
+PASS | menu contents unchanged and player items untouched
+PASS | perf sample: 5 new EndSpace worlds generated (informational) | total 190ms (~38ms each, includes tick waits), heap delta ~142MB, loaded EndSpace worlds=8, TPS=20.0
+PASS | empty EndSpace world unloads
+PASS | bob claims his own elytra | had 0 now 1
+PASS | frame still displays the elytra
+PASS | reloaded world kept its blocks
+PASS | repeated claim gives nothing | now 1
+PASS | alice independently claims the same ship's elytra
+PASS | elytra frame is protected (fixed + invulnerable)

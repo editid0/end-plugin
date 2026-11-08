@@ -1,0 +1,1015 @@
+# Endfold GUI texts and icons. All values are MiniMessage. Placeholders like <space> or <player> are filled in by the plugin.
+# Icons: gui.icons.<name> is any item material; invalid names fall back to the built-in default.
+gui:
+  disabled: "<#F87171>The menu is disabled on this server. Use <white>/end help</white> for the commands."
+
+  icons:
+    filler: BLACK_STAINED_GLASS_PANE
+    back: ARROW
+    close: BARRIER
+    prev: ARROW
+    next: ARROW
+    loading: CLOCK
+    error: BARRIER
+    empty: PAPER
+    disabled: BARRIER
+    profile: PLAYER_HEAD
+    spaces: END_PORTAL_FRAME
+    create: END_CRYSTAL
+    public: COMPASS
+    invitations: WRITABLE_BOOK
+    enter: ENDER_PEARL
+    achievements: DRAGON_HEAD
+    exit: OAK_DOOR
+    help: BOOK
+    admin: COMMAND_BLOCK
+    access-item: ENDER_EYE
+    select: ENDER_EYE
+    selected: END_PORTAL_FRAME
+    leave: RED_DYE
+    space-solo: ENDER_EYE
+    space-group: ENDER_CHEST
+    members: PLAYER_HEAD
+    invite: WRITABLE_BOOK
+    space-invites: MAP
+    progress: DRAGON_HEAD
+    settings: COMPARATOR
+    requests: PAPER
+    disband: TNT
+    dragon: DRAGON_HEAD
+    player: PLAYER_HEAD
+    search: NAME_TAG
+    rename: NAME_TAG
+    public-on: LIME_DYE
+    public-off: GRAY_DYE
+    join-open: OAK_DOOR
+    join-approval: IRON_DOOR
+    minus: RED_CONCRETE
+    plus: LIME_CONCRETE
+    max-members: PLAYER_HEAD
+    promote: LIME_DYE
+    demote: ORANGE_DYE
+    kick: IRON_BOOTS
+    transfer: GOLDEN_HELMET
+    confirm: LIME_CONCRETE
+    cancel: RED_CONCRETE
+    working: GRAY_CONCRETE
+    invite-in: PAPER
+    invite-out: MAP
+    filter: HOPPER
+    sort: COMPARATOR
+    reset: BARRIER
+    join: LIME_CONCRETE
+    request: YELLOW_CONCRETE
+    pending: CLOCK
+    stats: BOOK
+    shared: END_PORTAL_FRAME
+    ach-locked: GRAY_DYE
+    ach-first_arrival: ENDER_PEARL
+    ach-dragon_participant: DRAGON_BREATH
+    ach-dragon_final_blow: DRAGON_HEAD
+    ach-dragon_veteran: DRAGON_EGG
+    ach-city_explorer: ENDER_CHEST
+    ach-treasure_hunter: DIAMOND
+    ach-wings_of_the_void: ELYTRA
+    ach-shell_collector: SHULKER_SHELL
+    ach-expeditionist: COMPASS
+    refresh: SUNFLOWER
+    repair: ANVIL
+    load: LIME_DYE
+    unload: HOPPER
+    teleport: ENDER_PEARL
+    backup: CHEST_MINECART
+    archive: BARREL
+    activate: LIME_CONCRETE
+    delete: TNT
+    admin-active: ENDER_CHEST
+    admin-archived: CHEST
+    admin-broken: BARRIER
+    admin-deleted: DIRT
+
+  fmt:
+    never: "never"
+    unit-day: "d"
+    unit-hour: "h"
+    unit-minute: "m"
+
+  common:
+    back:
+      name: "<#9CA3AF>Back"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>to go back"
+    close:
+      name: "<#F87171>Close"
+    prev:
+      name: "<#7DD3FC>Previous page"
+    next:
+      name: "<#7DD3FC>Next page"
+    page: "<gray>Page <white><page></white>/<white><pages></white>"
+    loading:
+      name: "<#9CA3AF>Loading..."
+      lore:
+        - "<gray>Fetching the latest data."
+    load-failed:
+      name: "<#F87171>Could not load"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>to try again"
+    gone:
+      name: "<#F87171>No longer available"
+      lore:
+        - "<gray>This EndSpace changed or you lost access."
+        - "<#7DD3FC>> <white>Click</white> <gray>to go back"
+
+  state:
+    loading-world: "<#FACC15>Waking up..."
+    progress-loading: "<#9CA3AF>loading..."
+    dragon-defeated: "<#4ADE80>Defeated</#4ADE80> <gray>(<kills>x)"
+    dragon-alive: "<#F87171>Still alive"
+    selected: "<#4ADE80>✔ Selected as portal destination"
+    not-selected: "<#9CA3AF>○ Not selected"
+    can-enter: "<#4ADE80>✔ You can enter"
+    cannot-enter: "<#F87171>✖ Cannot enter right now"
+    public: "<#7DD3FC>Public expedition"
+    private: "<gray>Private"
+    online: "<#4ADE80>● Online"
+    offline: "<#9CA3AF>○ Offline"
+    exp-member: "<#4ADE80>✔ You are a member"
+    exp-pending: "<#FACC15>⏳ Request pending"
+    exp-full: "<#F87171>✖ Full"
+    exp-open: "<#4ADE80>✔ Accepting players"
+
+  main:
+    title: "<#C084FC>Endfold"
+    selected-name: "<#4ADE80>✔ </#4ADE80><white><space>"
+    selected-none: "<gray>none yet"
+    profile:
+      name: "<#C084FC><player>"
+      lore:
+        - "<gray>Portal destination: <selected>"
+        - "<gray>Member of <white><count></white> End world(s)"
+    spaces:
+      name: "<#C084FC><bold>My End Worlds</bold>"
+      lore:
+        - "<gray>Your End worlds: <white><count></white>"
+        - "<gray>Portal destination: <selected>"
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to select, enter or manage"
+    create:
+      name: "<#4ADE80>Create End World"
+      lore:
+        - "<gray>Start a personal End of your own,"
+        - "<gray>or a group End to share with friends."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to start"
+    create-first:
+      name: "<#4ADE80><bold>Start here: Create your End World</bold>"
+      lore:
+        - "<gray>You do not have an End world yet."
+        - "<gray>Create a personal one or a group one"
+        - "<gray>to share with friends."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to start"
+    public:
+      name: "<#7DD3FC>Public Expeditions"
+      lore:
+        - "<gray>Browse groups you can join."
+        - "<gray>Open now: <white><count>"
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to browse"
+    invitations:
+      name: "<#FACC15>Invitations"
+      lore:
+        - "<gray>Waiting for you: <white><count>"
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to view and answer"
+    enter:
+      name: "<#4ADE80>Enter selected End"
+      lore:
+        - "<gray>Teleports you to <white><space></white> now."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to travel"
+    enter-none:
+      name: "<#F87171>No End world selected"
+      lore:
+        - "<gray>Select one of your End worlds first,"
+        - "<gray>or create a new one."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to choose"
+    achievements:
+      name: "<#C084FC>Achievements"
+      lore:
+        - "<gray>Individual achievements: <white><unlocked></white>/<white><total></white>"
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to view"
+    exit:
+      name: "<#FACC15>Return to the overworld"
+      lore:
+        - "<gray>Leaves this End world. You stay a member."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to go back"
+    help:
+      name: "<#7DD3FC>How it works"
+      lore:
+        - "<gray>Select, Enter, Return and Leave"
+        - "<gray>explained."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to read"
+    admin:
+      name: "<#F87171>Administration"
+      lore:
+        - "<gray>Manage every End world on the server."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to open"
+
+  help:
+    title: "<#C084FC>How Endfold works"
+    select:
+      name: "<#7DD3FC>Select"
+      lore:
+        - "<gray>Chooses which End world the End portal"
+        - "<gray>takes you to. <white>Does not teleport you.</white>"
+        - "<gray>Only one can be selected at a time."
+    enter:
+      name: "<#4ADE80>Enter"
+      lore:
+        - "<gray>Teleports you into an End world right now."
+        - "<gray>Your selected portal destination does not change."
+    return:
+      name: "<#FACC15>Return"
+      lore:
+        - "<gray>Takes you back to the overworld."
+        - "<gray>You stay a member of the End world."
+    leave:
+      name: "<#F87171>Leave"
+      lore:
+        - "<gray>Removes you from an End world for good."
+        - "<gray>You need a new invitation to come back."
+
+  spaces:
+    title: "<#C084FC>My End Worlds"
+    header:
+      name: "<#C084FC>My End Worlds"
+      lore:
+        - "<gray>Left-click an entry to manage it."
+        - "<gray>Right-click to select it as portal destination."
+        - "<gray>Shift-click to enter it now."
+    create:
+      name: "<#4ADE80>Create End World"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>to start"
+    empty:
+      name: "<#FACC15>No End worlds yet"
+      lore:
+        - "<gray>Create your own End world below,"
+        - "<gray>or join one from Public Expeditions."
+    entry:
+      name: "<#C084FC><space>"
+      lore:
+        - "<type> <dark_gray>-</dark_gray> <role>"
+        - "<gray>Owner: <white><owner>"
+        - "<gray>Members: <white><members></white>/<max>"
+        - "<gray>World: <state>"
+        - "<gray>Dragon: <dragon>"
+        - "<enter>"
+        - ""
+        - "<#7DD3FC>> <white>Left-click</white> <gray>manage"
+        - "<#7DD3FC>> <white>Right-click</white> <gray>select as portal destination"
+        - "<#7DD3FC>> <white>Shift-click</white> <gray>enter now"
+    entry-selected:
+      name: "<#4ADE80>✔ </#4ADE80><#C084FC><space>"
+      lore:
+        - "<type> <dark_gray>-</dark_gray> <role>"
+        - "<#4ADE80>✔ Selected as portal destination"
+        - "<gray>Owner: <white><owner>"
+        - "<gray>Members: <white><members></white>/<max>"
+        - "<gray>World: <state>"
+        - "<gray>Dragon: <dragon>"
+        - "<enter>"
+        - ""
+        - "<#7DD3FC>> <white>Left-click</white> <gray>manage"
+        - "<#7DD3FC>> <white>Shift-click</white> <gray>enter now"
+    cannot-enter: "<#F87171>You cannot enter that End world right now."
+    already-selected: "<#FACC15>That End world is already your portal destination."
+
+  space:
+    title: "<#C084FC><space>"
+    info:
+      name: "<#C084FC><bold><space></bold>"
+      lore:
+        - "<type> <dark_gray>-</dark_gray> <role>"
+        - "<gray>Owner: <white><owner>"
+        - "<gray>Members: <white><members></white>/<max>"
+        - "<gray>World: <state>"
+        - "<gray>Status: <status>"
+        - "<gray>Visibility: <visibility>"
+        - "<selected>"
+        - "<gray>Created: <white><created>"
+    select:
+      name: "<#7DD3FC>Select as portal destination"
+      lore:
+        - "<gray>Makes the End portal take you here."
+        - "<white>Does not teleport you.</white>"
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to select"
+    select-done:
+      name: "<#4ADE80>✔ Selected"
+      lore:
+        - "<gray>The End portal takes you here."
+    enter:
+      name: "<#4ADE80>Enter now"
+      lore:
+        - "<gray>Teleports you to <white><space></white> right now."
+        - "<gray>Your selected portal destination stays the same."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to travel"
+    enter-no:
+      name: "<#F87171>Cannot enter"
+      lore:
+        - "<gray>This End world is not active."
+    return:
+      name: "<#FACC15>Return to the overworld"
+      lore:
+        - "<gray>Takes you back. You stay a member."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to return"
+    members:
+      name: "<#7DD3FC>Members"
+      lore:
+        - "<gray>Members: <white><count></white> (<online> online)"
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to view and manage"
+    invite:
+      name: "<#4ADE80>Invite a player"
+      lore:
+        - "<gray>Invite someone who is online"
+        - "<gray>or search for them by name."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to choose"
+    progress:
+      name: "<#C084FC>Progression"
+      lore:
+        - "<gray>Shared dragon progress of this End world"
+        - "<gray>and your own contribution."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to view"
+    settings:
+      name: "<#7DD3FC>Settings"
+      lore:
+        - "<gray>Rename, public listing,"
+        - "<gray>join mode and member limit."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to open"
+    requests:
+      name: "<#FACC15>Join requests"
+      lore:
+        - "<gray>Waiting for a decision: <white><count>"
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to review"
+    invites:
+      name: "<#7DD3FC>Pending invitations"
+      lore:
+        - "<gray>Invitations sent for this End world."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to view or cancel them"
+    leave:
+      name: "<#F87171>Leave End world"
+      lore:
+        - "<gray>Removes you from this End world for good."
+        - "<gray>You will need a new invitation to return."
+        - "<gray>This is different from <white>Return</white>."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to leave (asks first)"
+    leave-owner:
+      name: "<#F87171>Leave End world"
+      lore:
+        - "<gray>You are the owner. Depending on the server rules"
+        - "<gray>you may have to transfer ownership first."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to try (asks first)"
+    disband:
+      name: "<#F87171>Disband End world"
+      lore:
+        - "<gray>Owner only. Archives this End world for everyone."
+        - "<gray>The world is <white>kept</white>, not deleted;"
+        - "<gray>only an administrator can restore it."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to disband (asks first)"
+
+  settings:
+    title: "<#C084FC>Settings - <space>"
+    info:
+      name: "<#C084FC><space>"
+      lore:
+        - "<type>"
+        - "<gray>Visibility: <visibility>"
+        - "<gray>Join mode: <join>"
+        - "<gray>Member limit: <white><max>"
+    rename:
+      name: "<#7DD3FC>Rename"
+      lore:
+        - "<gray>Current name: <white><space>"
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to enter a new name"
+    rename-title: "<#C084FC>Rename End world"
+    rename-hint: "<gray>Enter a new name (<min>-<max> characters)."
+    visibility-public:
+      name: "<#4ADE80>Public expedition: on"
+      lore:
+        - "<gray>Everyone can find this End world"
+        - "<gray>in Public Expeditions."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to make it private"
+    visibility-private:
+      name: "<#9CA3AF>Public expedition: off"
+      lore:
+        - "<gray>Only invited players can join."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to list it publicly"
+    join-open:
+      name: "<#4ADE80>Join mode: open"
+      lore:
+        - "<gray>Anyone can join instantly."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to require approval"
+    join-approval:
+      name: "<#FACC15>Join mode: approval required"
+      lore:
+        - "<gray>Players send a request and you decide."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to allow instant joining"
+    max-members:
+      name: "<#7DD3FC>Member limit: <max>"
+      lore:
+        - "<gray>Current members: <white><members>"
+        - "<gray>Highest possible: <white><hard>"
+    max-minus:
+      name: "<#F87171>Fewer slots"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>-1"
+        - "<#7DD3FC>> <white>Shift-click</white> <gray>-5"
+    max-plus:
+      name: "<#4ADE80>More slots"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>+1"
+        - "<#7DD3FC>> <white>Shift-click</white> <gray>+5"
+
+  progress:
+    title: "<#C084FC>Progression - <space>"
+    shared:
+      name: "<#C084FC>Shared progression"
+      lore:
+        - "<gray>Belongs to the whole End world."
+        - ""
+        - "<gray>Ender Dragon: <dragon>"
+        - "<gray>Victories: <white><kills>"
+        - "<gray>Gateways opened: <white><gateways>"
+        - "<gray>First victory: <white><first>"
+        - "<gray>Latest victory: <white><last>"
+    personal:
+      name: "<#7DD3FC>Your contribution (individual)"
+      lore:
+        - "<gray>Only counts for you, in this End world."
+        - ""
+        - "<gray>Dragon fights joined: <white><participations>"
+        - "<gray>Final blows: <white><kills>"
+        - "<gray>Damage dealt: <white><damage>"
+        - "<gray>Chests looted: <white><chests>"
+        - "<gray>Elytra claimed: <white><elytra>"
+        - "<gray>Shulkers defeated: <white><shulkers>"
+
+  members:
+    title: "<#C084FC>Members - <space>"
+    empty:
+      name: "<#FACC15>No members"
+    header:
+      name: "<#C084FC>Members"
+      lore:
+        - "<gray>Members: <white><count></white>/<max>"
+        - "<gray>Your role: <role>"
+    entry:
+      name: "<player>"
+      lore:
+        - "<gray>Role: <role>"
+        - "<online>"
+        - "<gray>Joined: <white><joined>"
+        - ""
+        - "<hint>"
+    hint-manage: "<#7DD3FC>> <white>Click</white> <gray>to manage"
+    hint-none: "<#9CA3AF>You cannot manage this member"
+
+  member:
+    title: "<#C084FC><player>"
+    info:
+      name: "<white><player>"
+      lore:
+        - "<gray>Role: <role>"
+    promote:
+      name: "<#4ADE80>Promote to Admin"
+      lore:
+        - "<gray>Admins can invite and remove members."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to promote <player>"
+    demote:
+      name: "<#FACC15>Demote to Member"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>to demote <player>"
+    kick:
+      name: "<#F87171>Remove from End world"
+      lore:
+        - "<gray>Removes <white><player></white> from this End world."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to remove (asks first)"
+    transfer:
+      name: "<#F87171>Transfer ownership"
+      lore:
+        - "<gray>Makes <white><player></white> the owner."
+        - "<gray>You become an Admin."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to transfer (asks first)"
+
+  create:
+    title: "<#C084FC>Create End World"
+    solo:
+      name: "<#7DD3FC>Solo End"
+      lore:
+        - "<gray>Just you. A private End world"
+        - "<gray>with its own dragon and loot."
+        - "<gray>It is selected as your portal destination."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to create"
+    solo-exists:
+      name: "<#7DD3FC>Your Solo End"
+      lore:
+        - "<gray>You already have a personal End."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to select it and open it"
+    solo-disabled:
+      name: "<#F87171>Solo End unavailable"
+      lore:
+        - "<gray>Solo End worlds are disabled on this server."
+    group:
+      name: "<#C084FC>Group End"
+      lore:
+        - "<gray>You and your friends. You become the owner."
+        - "<gray>Shared dragon, personal End City loot."
+        - "<gray>Groups you own: <white><owned></white>/<max>"
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to choose a name"
+    group-limit:
+      name: "<#F87171>Group limit reached"
+      lore:
+        - "<gray>You own <white><owned></white> of <white><max></white> allowed groups."
+    group-disabled:
+      name: "<#F87171>Group End unavailable"
+      lore:
+        - "<gray>Group End worlds are disabled on this server."
+    no-permission:
+      name: "<#F87171>Not allowed"
+      lore:
+        - "<gray>You do not have permission to create End worlds."
+    name-title: "<#C084FC>Name your group End"
+    name-hint: "<gray>Enter a name (<min>-<max> characters)."
+    review-title: "<#C084FC>Create End World - Review"
+    summary:
+      name: "<#C084FC><space>"
+      lore:
+        - "<gray>Type: <#C084FC>Group</#C084FC>"
+        - "<gray>You become the <#FACC15>Owner</#FACC15>."
+        - "<gray>It becomes private; you can list it publicly later."
+    confirm:
+      name: "<#4ADE80>Create"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>to create this End world"
+    change-name:
+      name: "<#7DD3FC>Change name"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>to enter another name"
+    cancel:
+      name: "<#F87171>Cancel"
+
+  invite:
+    title: "<#C084FC>Invite a player"
+    player:
+      name: "<white><player>"
+      lore:
+        - "<#4ADE80>● Online"
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to invite"
+
+  select:
+    empty:
+      name: "<#FACC15>Nobody to choose from"
+      lore:
+        - "<gray>No eligible players are online."
+        - "<gray>Use the search button to find someone by name."
+    search:
+      name: "<#7DD3FC>Search by name"
+      lore:
+        - "<gray>Type the exact name of a player."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to search"
+    search-title: "<#C084FC>Find a player"
+    search-hint: "<gray>Enter the exact player name."
+    not-found: "<#F87171>No player named <white><name></white> is known to this server."
+
+  invitations:
+    title: "<#C084FC>Invitations"
+    title-space: "<#C084FC>Pending invitations"
+    empty:
+      name: "<#FACC15>No invitations"
+      lore:
+        - "<gray>Nothing here right now."
+    header-space:
+      name: "<#C084FC>Invitations for <space>"
+    tab-incoming:
+      name: "<#9CA3AF>Incoming (<count>)"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>to show"
+    tab-incoming-active:
+      name: "<#4ADE80>Incoming (<count>)"
+      lore:
+        - "<gray>Invitations sent to you."
+    tab-outgoing:
+      name: "<#9CA3AF>Outgoing (<count>)"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>to show"
+    tab-outgoing-active:
+      name: "<#4ADE80>Outgoing (<count>)"
+      lore:
+        - "<gray>Invitations you sent."
+    expiring: "<#FACC15>(soon)"
+    incoming:
+      name: "<#C084FC><space>"
+      lore:
+        - "<gray>From: <white><inviter>"
+        - "<gray>Type: <type>"
+        - "<gray>Owner: <white><owner>"
+        - "<gray>Members: <white><members></white>/<max>"
+        - "<gray>Sent: <white><created>"
+        - "<gray>Expires in: <white><expires></white> <soon>"
+        - ""
+        - "<#7DD3FC>> <white>Left-click</white> <gray>accept"
+        - "<#7DD3FC>> <white>Right-click</white> <gray>decline"
+    outgoing:
+      name: "<#C084FC><space>"
+      lore:
+        - "<gray>To: <white><invitee>"
+        - "<gray>Invited by: <white><inviter>"
+        - "<gray>Sent: <white><created>"
+        - "<gray>Expires in: <white><expires>"
+        - ""
+        - "<#7DD3FC>> <white>Right-click</white> <gray>cancel invitation"
+
+  public:
+    title: "<#C084FC>Public Expeditions"
+    empty:
+      name: "<#FACC15>No expeditions found"
+      lore:
+        - "<gray>No public group matches your filter."
+        - "<gray>Create one and list it publicly in its settings."
+    header:
+      name: "<#C084FC>Public Expeditions"
+      lore:
+        - "<gray>Groups that welcome new players."
+        - "<gray>Shown: <white><count>"
+    filter:
+      name: "<#7DD3FC>Filter by join mode"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>to change"
+        - ""
+    filter-all: "All"
+    filter-open: "Open"
+    filter-approval: "Approval required"
+    sort:
+      name: "<#7DD3FC>Sort"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>to change"
+        - ""
+    sort-members: "Most members"
+    sort-newest: "Newest"
+    sort-name: "Name"
+    option: "<gray>  <name>"
+    option-active: "<#4ADE80>▶ <name>"
+    desc-line: "<#9CA3AF><italic><desc>"
+    reset:
+      name: "<#7DD3FC>Reset filter"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>to show all"
+    entry:
+      name: "<#C084FC><space>"
+      lore:
+        - "<gray>Owner: <white><owner>"
+        - "<gray>Members: <white><members></white>/<max>"
+        - "<gray>Dragon: <dragon>"
+        - "<gray>Join: <join>"
+        - "<gray>Created: <white><created>"
+        - "<status>"
+        - "<desc>"
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>for details"
+
+  expedition:
+    title: "<#C084FC><space>"
+    no-description: "No description."
+    info:
+      name: "<#C084FC><bold><space></bold>"
+      lore:
+        - "<gray>Owner: <white><owner>"
+        - "<gray>Members: <white><members></white>/<max>"
+        - "<gray>Join: <join>"
+        - "<gray>Created: <white><created>"
+        - ""
+        - "<#9CA3AF><desc>"
+    member:
+      name: "<#4ADE80>You are a member"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>to open this End world"
+    no-permission:
+      name: "<#F87171>Not allowed"
+      lore:
+        - "<gray>You do not have permission to join expeditions."
+    full:
+      name: "<#F87171>Full"
+      lore:
+        - "<gray>This expedition has no free slots."
+    join:
+      name: "<#4ADE80>Join expedition"
+      lore:
+        - "<gray>You become a member of <white><space></white> instantly."
+        - "<gray>Joining does not teleport you."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to join"
+    cancel-request:
+      name: "<#FACC15>Request pending"
+      lore:
+        - "<gray>Waiting for an admin of <white><space></white>."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to cancel your request"
+    request:
+      name: "<#FACC15>Request to join"
+      lore:
+        - "<gray>The admins of <white><space></white> must approve you."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to send a request"
+    owner:
+      name: "<#FACC15>Owner: <player>"
+    progress:
+      name: "<#C084FC>Progression"
+      lore:
+        - "<gray>Ender Dragon: <dragon>"
+        - "<gray>Gateways opened: <white><gateways>"
+
+  requests:
+    title: "<#C084FC>Requests - <space>"
+    empty:
+      name: "<#FACC15>No pending requests"
+    header:
+      name: "<#C084FC>Join requests"
+      lore:
+        - "<gray>Waiting for a decision: <white><count>"
+    entry:
+      name: "<white><player>"
+      lore:
+        - "<gray>Requested: <white><created>"
+        - "<gray>Waiting for: <white><ago>"
+        - ""
+        - "<#7DD3FC>> <white>Left-click</white> <gray>approve"
+        - "<#7DD3FC>> <white>Right-click</white> <gray>deny"
+
+  achievements:
+    title: "<#C084FC>Achievements"
+    empty:
+      name: "<#FACC15>No achievements enabled"
+    header:
+      name: "<#C084FC>Individual achievements"
+      lore:
+        - "<gray>Unlocked: <white><unlocked></white>/<white><total></white>"
+        - "<gray>Achievements are personal. Joining an End world"
+        - "<gray>that already progressed does not grant them."
+    stats:
+      name: "<#7DD3FC>Your statistics (individual)"
+      lore:
+        - "<gray>Totals across <white><worlds></white> End world(s)."
+        - ""
+        - "<gray>Dragon fights joined: <white><participations>"
+        - "<gray>Final blows: <white><kills>"
+        - "<gray>Chests looted: <white><chests>"
+        - "<gray>Elytra claimed: <white><elytra>"
+        - "<gray>Shulkers defeated: <white><shulkers>"
+    shared-note:
+      name: "<#C084FC>Shared progression"
+      lore:
+        - "<gray>The dragon belongs to the End world,"
+        - "<gray>not to a single player."
+        - "<gray>See it in each End world's <white>Progression</white> menu."
+    locked:
+      name: "<#9CA3AF><name>"
+      lore:
+        - "<red>✖ Locked"
+        - "<gray><hint>"
+    unlocked:
+      name: "<#4ADE80>✔ <name>"
+      lore:
+        - "<gray><hint>"
+        - ""
+        - "<gray>Unlocked: <white><date>"
+        - "<gray>In: <white><space>"
+    unknown-space: "an End world that no longer exists"
+    entries:
+      first_arrival:
+        name: "First Steps"
+        hint: "Enter any End world for the first time."
+      dragon_participant:
+        name: "Dragon Slayer"
+        hint: "Take part in defeating an Ender Dragon."
+      dragon_final_blow:
+        name: "Final Blow"
+        hint: "Land the killing blow on an Ender Dragon."
+      dragon_veteran:
+        name: "Dragon Veteran"
+        hint: "Take part in 5 dragon victories."
+      city_explorer:
+        name: "City Explorer"
+        hint: "Open your first End City treasure chest."
+      treasure_hunter:
+        name: "Treasure Hunter"
+        hint: "Loot 10 End City treasure chests."
+      wings_of_the_void:
+        name: "Wings of the Void"
+        hint: "Claim an Elytra from an End Ship."
+      shell_collector:
+        name: "Shell Collector"
+        hint: "Defeat 10 Shulkers in your End worlds."
+      expeditionist:
+        name: "Expeditionist"
+        hint: "Be a member of 3 End worlds at once."
+
+  admin:
+    title: "<#F87171>Administration"
+    empty:
+      name: "<#FACC15>No End worlds match"
+    header:
+      name: "<#F87171>All End worlds"
+      lore:
+        - "<gray>Shown: <white><count></white> of <white><total></white>"
+    filter:
+      name: "<#7DD3FC>Filter"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>to change"
+        - ""
+    filter-all: "All"
+    filter-active: "Active"
+    filter-archived: "Archived"
+    filter-broken: "Needs repair"
+    filter-loaded: "Loaded"
+    refresh:
+      name: "<#7DD3FC>Refresh"
+    repair:
+      name: "<#FACC15>Repair metadata"
+      lore:
+        - "<gray>Checks every End world for missing folders."
+        - "<gray>Never changes world files."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to run"
+    entry:
+      name: "<#C084FC><space>"
+      lore:
+        - "<gray>Id: <white><id>"
+        - "<type> <dark_gray>-</dark_gray> <status>"
+        - "<gray>Owner: <white><owner>"
+        - "<gray>Members: <white><members></white>/<max>"
+        - "<gray>World: <state> <gray>(<online> inside)"
+        - "<gray>Last active: <white><active>"
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>for admin tools"
+    detail-title: "<#F87171>Admin - <space>"
+    info:
+      name: "<#C084FC><space>"
+      lore:
+        - "<gray>Id: <white><id>"
+        - "<gray>World: <white><world>"
+        - "<type> <dark_gray>-</dark_gray> <status>"
+        - "<gray>Owner: <white><owner>"
+        - "<gray>Members: <white><members></white>/<max>"
+        - "<gray>Loaded: <state> <gray>(<online> inside)"
+        - "<gray>Created: <white><created>"
+        - "<gray>Last active: <white><active>"
+    load:
+      name: "<#4ADE80>Load world"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>to load it now"
+    unload:
+      name: "<#FACC15>Unload world"
+      lore:
+        - "<gray>Players inside are sent back first."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to unload"
+    teleport:
+      name: "<#7DD3FC>Teleport there"
+      lore:
+        - "<gray>Visit without being a member."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to teleport"
+    backup:
+      name: "<#7DD3FC>Create backup"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>to back up this world"
+    backup-started: "<gray>Backup of <white><space></white> started."
+    archive:
+      name: "<#F87171>Archive"
+      lore:
+        - "<gray>Members lose access. World and data are kept."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to archive (asks first)"
+    activate:
+      name: "<#4ADE80>Activate"
+      lore:
+        - "<gray>Makes this End world usable again."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to activate"
+    delete:
+      name: "<#F87171><bold>Delete</bold>"
+      lore:
+        - "<gray>Moves the world folder to the trash"
+        - "<gray>after taking a backup."
+        - ""
+        - "<#7DD3FC>> <white>Click</white> <gray>to delete (asks first)"
+
+  confirm:
+    working:
+      name: "<#9CA3AF>Working..."
+    cancel:
+      name: "<#F87171>Cancel"
+      lore:
+        - "<gray>Nothing will change."
+    confirm:
+      name: "<#4ADE80>Confirm"
+      lore:
+        - "<#7DD3FC>> <white>Click</white> <gray>to confirm"
+    confirm-danger:
+      name: "<#4ADE80>Confirm"
+      lore:
+        - "<#F87171>This cannot be undone easily."
+        - "<#7DD3FC>> <white>Shift + left-click</white> <gray>to confirm"
+    need-shift: "<#FACC15>Hold <white>Shift</white> and left-click to confirm this action."
+    leave:
+      title: "<#F87171>Leave <space>?"
+      summary:
+        name: "<#F87171>Leave <space>"
+        lore:
+          - "<gray>You lose access to this End world."
+          - "<gray>You need a new invitation to return."
+    disband:
+      title: "<#F87171>Disband <space>?"
+      summary:
+        name: "<#F87171>Disband <space>"
+        lore:
+          - "<gray>All members lose access."
+          - "<gray>The world is <white>archived, not deleted</white>."
+          - "<gray>Only an administrator can restore it."
+    kick:
+      title: "<#F87171>Remove <player>?"
+      summary:
+        name: "<#F87171>Remove <player>"
+        lore:
+          - "<gray>Removes <white><player></white> from <white><space></white>."
+          - "<gray>They need a new invitation to return."
+    transfer:
+      title: "<#F87171>Transfer ownership to <player>?"
+      summary:
+        name: "<#F87171>Make <player> the owner"
+        lore:
+          - "<gray>You become an Admin of <white><space></white>."
+          - "<gray>Only the new owner can undo this."
+    archive:
+      title: "<#F87171>Archive <space>?"
+      summary:
+        name: "<#F87171>Archive <space>"
+        lore:
+          - "<gray>Members lose access and are moved out."
+          - "<gray>World and data are kept; you can activate it again."
+    delete:
+      title: "<#F87171>Delete <space>?"
+      summary:
+        name: "<#F87171>Delete <space>"
+        lore:
+          - "<gray>Moves the world folder to the trash."
+          - "<gray>A backup is taken first when enabled."
+          - "<#F87171>The End world disappears for all members."
+
+  prompt:
+    dialog-ok: "<#4ADE80>Confirm"
+    dialog-cancel: "<#F87171>Cancel"
+    dialog-label: "Name"
+    chat: "<gray>Type your answer in chat. Type <white>cancel</white> to abort. (<seconds>s)"
+    timeout: "<#FACC15>Input timed out."
+    cancel-word: "cancel"
+    cancelled: "<gray>Cancelled."
+
+  errors:
+    name-length: "<#F87171>The name must be <min> to <max> characters long."
+
+  access-item:
+    name: "<#C084FC>Endfold Menu"
+    lore:
+      - "<gray>Right-click to open the End world menu."

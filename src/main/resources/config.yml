@@ -1,0 +1,150 @@
+# ---------------------------------------------------------------------------------------------------------------------
+#  Endfold - independent, persistent End dimensions for solo players, parties and public expeditions.
+#
+#  Every EndSpace is its own End world with its own seed, dragon, cities, gateways and builds. Players may belong to
+#  many EndSpaces and choose which one their End portals lead to ("selected" destination).
+#
+#  Invalid values are reported in the console on start-up / reload and replaced by the documented default; they never
+#  silently disable a system. Use /endfold reload to apply changes (world and database settings need a restart).
+# ---------------------------------------------------------------------------------------------------------------------
+
+config-version: 1
+
+instances:
+  solo:
+    # Allow personal (one member) EndSpaces.
+    enabled: true
+    # Create a player's personal EndSpace automatically the first time they step into an End portal
+    # without having selected a destination.
+    create-on-first-entry: true
+    # Default name for automatically created personal EndSpaces. {player} is replaced with the player name.
+    default-name: "{player}'s End"
+
+  group:
+    enabled: true
+    # Default maximum members for new groups (owner can change it up to hard-max-members).
+    max-members: 10
+    hard-max-members: 50
+    # How many GROUP EndSpaces a single player may own at once.
+    max-owned-per-player: 2
+    # Whether ordinary MEMBERs may invite. Owners and admins always can.
+    members-can-invite: false
+    # REQUIRE_TRANSFER: an owner must hand ownership to someone before leaving.
+    # AUTO_TRANSFER: leaving passes ownership to the longest-serving admin (else member).
+    owner-leave-policy: REQUIRE_TRANSFER
+
+  # Maximum number of EndSpaces (solo + group, owned or joined) a single player may belong to.
+  max-memberships-per-player: 25
+
+  names:
+    min-length: 3
+    max-length: 24
+
+  invitations:
+    # Hours until an invitation expires.
+    expire-after-hours: 72
+    max-pending-per-space: 20
+
+  worlds:
+    # Seed strategy for new EndSpaces: RANDOM (unique per space), FIXED (fixed-seed below) or OVERWORLD (main world seed).
+    seed-mode: RANDOM
+    fixed-seed: 0
+    # Unload an EndSpace world after it has been empty for this many minutes. Unloading saves and keeps all files.
+    unload-after-minutes: 10
+    # Maximum number of EndSpace worlds loaded at the same time (0 = unlimited). When the limit is reached, idle worlds
+    # are unloaded early; if none are idle, entry is refused with a "server busy" message until a world frees up.
+    max-loaded: 30
+    # Minimum seconds between two group EndSpace creations by the same player (abuse protection; staff exempt).
+    create-cooldown-seconds: 30
+    # Back up a world folder before destructive admin operations (delete, restore).
+    auto-backup: true
+    # Number of backups kept per EndSpace; older ones are pruned.
+    backups-to-keep: 5
+    # Also back up the database file daily and on start-up.
+    database-backups: true
+
+progression:
+  dragon:
+    # Vanilla behaviour is preserved: respawn the dragon with four End Crystals on the exit portal.
+    repeatable: true
+    # Optional difficulty scaling based on ACTIVE participants (players near the fight), never on member count.
+    health-scaling: false
+    # Extra max health multiplier per active participant beyond the first, e.g. 0.25 = +25% each.
+    health-scaling-per-player: 0.25
+    health-scaling-max-multiplier: 3.0
+    # A player counts as a participant if they dealt at least this much damage ...
+    participation-min-damage: 10.0
+    # ... or spent this many seconds within participation-radius blocks of the island centre during the fight.
+    participation-min-seconds: 60
+    participation-radius: 160
+
+  loot:
+    # Personal End City chests: every player gets their own loot from each End City chest.
+    personal-chests: true
+    # Protect registered End City loot containers from breaking, hoppers, pistons and explosions.
+    protect-containers: true
+
+  achievements:
+    # Achievements listed here are disabled.
+    disabled: []
+
+resources:
+  elytra:
+    # Personal Elytra claims from End Ship item frames.
+    enabled: true
+    # Claims per ship per player (always 1 when enabled; the frame keeps its Elytra on display).
+    claim-limit: 1
+    # Maximum Elytra claims per player per EndSpace (0 = unlimited).
+    per-space-limit: 0
+    # Optional global limit across all EndSpaces (0 = disabled).
+    global-limit: 0
+    # Optional cooldown in hours between any two Elytra claims by the same player (0 = disabled).
+    cooldown-hours: 0
+
+  shulkers:
+    respawn: true
+    # Hours before a defeated End City shulker can reappear at its original spot.
+    cooldown-hours: 72
+    # Respawns only refill the original spawn points of a city (never extra shulkers elsewhere), so the natural
+    # population is the real upper bound. The caps below stop respawning while this many tracked shulkers are alive
+    # (0 = no cap). Vanilla cities have roughly 4-12 shulkers; keep max-per-city at or above that.
+    # Maximum living tracked shulkers per EndSpace (only loaded areas are counted).
+    max-population: 50
+    # Maximum living tracked shulkers per End City.
+    max-per-city: 12
+    # Respawns only happen in loaded chunks with a member within this distance.
+    activation-radius: 48
+    check-interval-seconds: 60
+
+portals:
+  # Route End portals to the player's selected EndSpace.
+  route-to-selected-space: true
+  # Return players to the exact overworld location they entered from (per EndSpace).
+  return-to-entry-location: true
+  # Prevent players from reaching the shared vanilla End (world_the_end) through portals or teleports.
+  # Admins with endfold.admin.teleport bypass this.
+  block-unmanaged-end-access: true
+  # Fallback when a stored return location is missing or invalid: the spawn of this world (blank = main world).
+  fallback-world: ""
+  # Non-player entities that touch an End portal or gateway inside EndSpaces:
+  # BLOCK (stay where they are) or VANILLA_LOCAL (gateways inside the same EndSpace only; portals still blocked).
+  entity-policy: BLOCK
+  # Seconds a player must wait between two portal routings (prevents loops and spam).
+  cooldown-seconds: 3
+
+gui:
+  enabled: true
+  # Give players an item that opens the main menu.
+  use-access-item: false
+  access-item-material: ENDER_EYE
+  # Number of entries per page in paginated menus (7-28; menus use a 4x7 content area).
+  pagination-size: 28
+  # Play click sounds in menus.
+  sounds: true
+  # Milliseconds between two accepted menu clicks.
+  click-cooldown-ms: 200
+  # Text input method for names: DIALOG (Paper dialog window, recommended) or CHAT (type the name in chat).
+  # If a dialog cannot be shown, Endfold falls back to CHAT automatically.
+  text-input: DIALOG
+
+debug: false

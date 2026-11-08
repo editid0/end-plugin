@@ -1,0 +1,50 @@
+name: Endfold
+version: '${project.version}'
+main: dev.endfold.EndfoldPlugin
+api-version: '26.3'
+description: '${project.description}'
+author: editid0
+website: https://github.com/editid0
+load: POSTWORLD
+# Commands (/end, /endfold) are registered through Paper's Brigadier lifecycle API.
+
+permissions:
+  endfold.use:
+    description: Use End portals with Endfold routing, open the menu and switch between your EndSpaces.
+    default: true
+  endfold.create:
+    description: Create personal and group EndSpaces.
+    default: true
+  endfold.invite:
+    description: Invite players to EndSpaces you manage.
+    default: true
+  endfold.join:
+    description: Join or request to join public expeditions.
+    default: true
+  endfold.public:
+    description: Browse public expeditions and list your groups publicly.
+    default: true
+  endfold.admin:
+    description: Access to /endfold administration (read-only parts).
+    default: op
+    children:
+      endfold.admin.reload: true
+      endfold.admin.worlds: true
+      endfold.admin.delete: true
+      endfold.admin.teleport: true
+      endfold.admin.backup: true
+  endfold.admin.reload:
+    description: Reload Endfold configuration and messages.
+    default: op
+  endfold.admin.worlds:
+    description: Inspect, load, unload, repair and manage EndSpaces and memberships.
+    default: op
+  endfold.admin.delete:
+    description: Disband or delete EndSpaces (moves world folders to trash, with confirmation).
+    default: op
+  endfold.admin.teleport:
+    description: Teleport into any EndSpace and bypass Endfold access checks (including the shared End).
+    default: op
+  endfold.admin.backup:
+    description: Create and restore EndSpace backups.
+    default: op
