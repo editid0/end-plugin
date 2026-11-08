@@ -210,6 +210,12 @@ public final class TestkitPlugin extends JavaPlugin {
         sc.run("bob creates group", () -> {
             bobGroup = await(api.services().spaces.create(bob.getUniqueId(), bob.getName(), SpaceType.GROUP, "Bob Crew"));
             sc.check("bob's first space is auto-selected", bobGroup.id().equals(api.services().dir().selectedId(bob.getUniqueId()).orElse(null)), "");
+            // portals.direct-teleport defaults to AFTER_PORTAL: no teleporting in before the first real portal trip.
+            sc.check("direct teleport locked before the first End portal trip", api.router().directAccess(bob)
+                    == dev.endfold.portal.PortalRouter.DirectAccess.NEEDS_PORTAL, String.valueOf(api.router().directAccess(bob)));
+            var locked = api.router().enter(bob, bobGroup, false);
+            sc.check("menu/command enter refused while locked; player stays put", locked == dev.endfold.portal.PortalRouter.Outcome.LOCKED
+                    && bob.getWorld() == ow, locked.name());
             stepInto(bob, portalCenter());
         }).waitUntil("bob arrives in his group world", () -> spaceOf(bob).map(s -> s.id().equals(bobGroup.id())).orElse(false), 400)
                 .run("two independent End worlds", () -> {
@@ -220,6 +226,8 @@ public final class TestkitPlugin extends JavaPlugin {
                     sc.check("each world has its own dragon battle", ba != null && bb != null && ba != bb, "");
                     sc.check("seeds differ (RANDOM seed mode)", a.getSeed() != b.getSeed(), a.getSeed() + " vs " + b.getSeed());
                     b.getBlockAt(400, 100, 400).setType(Material.GOLD_BLOCK);
+                    sc.check("first real portal trip unlocks direct teleporting", api.router().directAccess(bob)
+                            == dev.endfold.portal.PortalRouter.DirectAccess.ALLOWED, "");
                     sc.check("block changes are independent", a.getBlockAt(400, 100, 400).getType() == Material.DIAMOND_BLOCK
                             && b.getBlockAt(400, 100, 400).getType() == Material.GOLD_BLOCK, "");
                 });
@@ -627,6 +635,8 @@ public final class TestkitPlugin extends JavaPlugin {
             sc.check("alice still belongs to both", dir.isMember(soloId, aliceId) && dir.isMember(groupId, aliceId), "");
             sc.check("bob's selection persisted", groupId.equals(dir.selectedId(bobId).orElse(null)), "");
             sc.check("alice's selection persisted", soloId.equals(dir.selectedId(aliceId).orElse(null)), "");
+            sc.check("portal-trip unlock persisted across restart", api.services().profiles.hasFlag(aliceId, dev.endfold.service.ProfileService.FLAG_END_PORTAL_USED)
+                    && api.services().profiles.hasFlag(bobId, dev.endfold.service.ProfileService.FLAG_END_PORTAL_USED), "");
             List<Membership> members = dir.members(groupId);
             sc.check("group membership roles persisted", members.size() == 2, members.toString());
             sc.check("worlds are not loaded until needed (lazy)", !api.instances().isLoaded(dir.space(soloId).get()), "");

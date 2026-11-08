@@ -34,7 +34,13 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
  * arrival platform is rebuilt here because vanilla only builds it in the shared End.</p>
  */
 public final class PortalRouter {
-    public enum Outcome { STARTED, BUSY, COOLDOWN, NO_DESTINATION, DENIED, FAILED }
+    public enum Outcome { STARTED, BUSY, COOLDOWN, NO_DESTINATION, DENIED, LOCKED, FAILED }
+
+    /** Whether a player may teleport into EndSpaces without an End portal ({@code portals.direct-teleport}). */
+    public enum DirectAccess { ALLOWED, NEEDS_PORTAL, DISABLED }
+
+    public static final String BYPASS_DIRECT = "endfold.bypass.direct-teleport";
+    private static final org.bukkit.NamespacedKey ENTER_THE_END = org.bukkit.NamespacedKey.minecraft("story/enter_the_end");
 
     private final EndfoldPlugin plugin;
     private final Set<UUID> routing = ConcurrentHashMap.newKeySet();
@@ -72,10 +78,42 @@ public final class PortalRouter {
         lastRoute.put(p.getUniqueId(), System.currentTimeMillis());
     }
 
+    // ------------------------------------------------------------------ direct-teleport policy
+
+    /**
+     * Evaluates {@code portals.direct-teleport} for {@code p}. Portal travel is never restricted by this; it only
+     * governs "Enter now" / {@code /end enter}.
+     */
+    public DirectAccess directAccess(Player p) {
+        if (p.hasPermission(BYPASS_DIRECT)) return DirectAccess.ALLOWED;
+        return switch (cfg().directTeleport) {
+            case ALWAYS -> DirectAccess.ALLOWED;
+            case NEVER -> DirectAccess.DISABLED;
+            case AFTER_PORTAL -> hasUsedPortal(p) ? DirectAccess.ALLOWED : DirectAccess.NEEDS_PORTAL;
+        };
+    }
+
+    /** True once the player entered any EndSpace through a real End portal (or has the vanilla advancement, if enabled). */
+    public boolean hasUsedPortal(Player p) {
+        if (plugin.services().profiles.hasFlag(p.getUniqueId(), dev.endfold.service.ProfileService.FLAG_END_PORTAL_USED)) return true;
+        if (!cfg().directTeleportVanillaAdvancement) return false;
+        org.bukkit.advancement.Advancement adv = org.bukkit.Bukkit.getAdvancement(ENTER_THE_END);
+        return adv != null && p.getAdvancementProgress(adv).isDone();
+    }
+
+    /** Sends the explanation and returns false when direct teleporting is not allowed for {@code p}. */
+    private boolean checkDirect(Player p) {
+        DirectAccess a = directAccess(p);
+        if (a == DirectAccess.ALLOWED) return true;
+        msg().send(p, a == DirectAccess.DISABLED ? "portal.direct-disabled" : "portal.direct-locked");
+        return false;
+    }
+
     // ------------------------------------------------------------------ entering
 
     /** Portal entry or {@code /end enter}: go to the selected EndSpace, creating a personal one if configured. */
     public Outcome enterSelected(Player p, boolean fromPortal) {
+        if (!fromPortal && !checkDirect(p)) return Outcome.LOCKED;
         Optional<EndSpace> selected = plugin.services().profiles.selectedSpace(p.getUniqueId());
         if (selected.isPresent()) return enter(p, selected.get(), fromPortal);
         EndfoldConfig c = cfg();
@@ -97,7 +135,7 @@ public final class PortalRouter {
                         msg().fail(p, r.failure());
                         return;
                     }
-                    enter(p, r.value(), false);
+                    enterInternal(p, r.value(), fromPortal, false);
                 }, Sync.main());
         return Outcome.STARTED;
     }
@@ -106,11 +144,19 @@ public final class PortalRouter {
      * Sends {@code p} into {@code space}. Membership is checked against the live directory; the world is loaded or
      * generated on demand. The player's current overworld location becomes the return point for this space.
      */
-    public Outcome enter(Player p, EndSpace space, boolean fromPortal) {
+    public Outcome enter(Player p, EndSpace space, boolean fromPortal) { return enterInternal(p, space, fromPortal, fromPortal); }
+
+    /**
+     * @param viaPortal   the player physically used an End portal (unlocks direct teleporting; not subject to it)
+     * @param useCooldown apply the portal re-entry cooldown
+     */
+    private Outcome enterInternal(Player p, EndSpace space, boolean viaPortal, boolean useCooldown) {
+        boolean fromPortal = useCooldown;
         if (!instances().canEnter(space.id(), p)) {
             msg().send(p, "portal.access-denied");
             return Outcome.DENIED;
         }
+        if (!viaPortal && !checkDirect(p)) return Outcome.LOCKED;
         Optional<EndSpace> current = instances().currentSpace(p);
         if (current.isPresent() && current.get().id().equals(space.id())) return Outcome.STARTED;
         if (!begin(p, fromPortal)) return fromPortal ? Outcome.COOLDOWN : Outcome.BUSY;
@@ -138,7 +184,7 @@ public final class PortalRouter {
         if (!loaded) msg().send(p, "portal.loading", Messages.arg("space", space.name()));
 
         saved.thenComposeAsync(ignored -> instances().ensureLoaded(space), Sync.main())
-                .thenComposeAsync(world -> arrive(p, space, world), Sync.main())
+                .thenComposeAsync(world -> arrive(p, space, world, viaPortal), Sync.main())
                 .whenCompleteAsync((ok, err) -> {
                     end(p);
                     if (err != null) handleLoadError(p, space, err);
@@ -146,7 +192,7 @@ public final class PortalRouter {
         return Outcome.STARTED;
     }
 
-    private CompletableFuture<Boolean> arrive(Player p, EndSpace space, World world) {
+    private CompletableFuture<Boolean> arrive(Player p, EndSpace space, World world, boolean viaPortal) {
         if (!p.isOnline()) return CompletableFuture.completedFuture(false);
         // Re-check: membership may have changed while the world loaded.
         if (!instances().canEnter(space.id(), p)) {
@@ -162,6 +208,10 @@ public final class PortalRouter {
         }, Sync.main()).thenApplyAsync(ok -> {
             if (Boolean.TRUE.equals(ok)) {
                 msg().send(p, "portal.entering", Messages.arg("space", space.name()));
+                if (viaPortal && !plugin.services().profiles.hasFlag(p.getUniqueId(), dev.endfold.service.ProfileService.FLAG_END_PORTAL_USED)) {
+                    plugin.services().profiles.setFlag(p.getUniqueId(), dev.endfold.service.ProfileService.FLAG_END_PORTAL_USED);
+                    if (cfg().directTeleport == EndfoldConfig.DirectTeleport.AFTER_PORTAL) msg().send(p, "portal.direct-unlocked");
+                }
                 plugin.lifecycle().markOccupied(space.id());
                 plugin.services().spaces.touch(space.id());
                 int memberships = plugin.services().dir().spacesOf(p.getUniqueId()).size();

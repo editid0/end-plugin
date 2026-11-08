@@ -5,8 +5,8 @@ reviewed. Raw outputs are in [`docs/test-results/`](test-results/).
 
 | Level | How to run | Result (2026-11-08) |
 |---|---|---|
-| Unit tests (JUnit 6, real SQLite files) | `./mvnw clean package` | **123 passed**, 0 failed, 0 skipped |
-| Real-server integration (Purpur 26.3 build 2657, two phases across a full restart) | `./testkit/run-integration.sh` | **76 checks passed** (51 + 25), 0 failed, 0 skipped |
+| Unit tests (JUnit 6, real SQLite files) | `./mvnw clean package` | **126 passed**, 0 failed, 0 skipped |
+| Real-server integration (Purpur 26.3 build 2657, two phases across a full restart) | `./testkit/run-integration.sh` | **80 checks passed** (54 + 26), 0 failed, 0 skipped |
 | Milestone-1 feasibility proof of concept (Purpur 26.3) | scratch plugin, see ARCHITECTURE.md | all questions answered positively |
 | Independent code review (security, duplication, threading) | review agent | 17 findings (no critical/high); all medium findings fixed, see below |
 
@@ -15,7 +15,7 @@ reviewed. Raw outputs are in [`docs/test-results/`](test-results/).
 Services are Bukkit-free, so they are tested against a real SQLite database file per test (no mocks for persistence).
 A fake clock drives expiry; `Fixture.restart()` closes and reopens the database to simulate a server restart.
 
-* **Migrations** - fresh database, idempotent re-run, checksum tampering refused, newer-schema database refused,
+* **Migrations** - fresh database, upgrade of an existing V1 database with data to V2, idempotent re-run, checksum tampering refused, newer-schema database refused,
   failed migration rolls back, foreign keys enforced.
 * **Spaces** - SOLO/GROUP creation, SOLO uniqueness under 16 concurrent creates, ownership and membership limits,
   name validation (length, MiniMessage tags, section signs), deterministic unique world names, auto-select of the
@@ -38,6 +38,7 @@ A fake clock drives expiry; `Fixture.restart()` closes and reopens the database 
 * **World files** (`WorldRepositoryTest`) - 26.x level folder resolution, backup/restore round trip (previous state
   kept in trash, `session.lock` excluded), zip-slip entries rejected without touching the world, backup names
   validated, orphan folders reported but never touched.
+* **Player flags** (`PlayerFlagTest`) - the portal-trip unlock is set once, per player, and survives a restart.
 * **Review regressions** (`ReviewFixesTest`) - invitations from kicked or demoted inviters are unusable; a DELETED
   space can never be flipped back to another status.
 
@@ -53,7 +54,7 @@ frame, clicking a menu slot) are fired as the corresponding Bukkit events into t
 again and runs **phase 2**. The only configuration override is a 36-second shulker cooldown (instead of 72 hours) so a
 respawn can be observed.
 
-### Phase 1 (51 checks)
+### Phase 1 (54 checks)
 
 * **Multiple worlds** - first End portal entry creates Alice's personal End and routes her onto a rebuilt obsidian
   platform; Bob creates a group and enters it; both worlds are `THE_END`, distinct, have their own `DragonBattle` and
@@ -62,6 +63,9 @@ respawn can be observed.
   her - select is not enter), Bob's selection is unaffected; Alice returns to the exact overworld spot next to the
   portal (not inside it), re-enters through the portal into Bob's End; later switches back to her solo End, whose
   blocks are intact, while still being a member of Bob's group.
+* **Direct-teleport policy** (default `AFTER_PORTAL`) - before his first portal trip Bob's "Enter now" is refused and
+  he stays in the overworld; after walking through the End portal it is unlocked; the unlock persists across the
+  restart (phase 2).
 * **Access control** - command and plugin teleports of a non-member (Carol) into Bob's End are cancelled; the router
   refuses her; when Carol uses the portal she gets her own new End, never Bob's.
 * **Dragon** - the dragon spawns in Bob's End; Alice and Bob damage it; it dies; a gateway spawns; shared progress
@@ -84,7 +88,7 @@ respawn can be observed.
   invulnerable; a repeated claim gives nothing; Alice independently claims her own from the same ship.
 * Bob logs out while inside his EndSpace.
 
-### Phase 2 after a full restart (25 checks)
+### Phase 2 after a full restart (26 checks)
 
 * Spaces, memberships, roles and both players' selections persisted; worlds are not loaded until needed.
 * Both worlds load with their blocks; the group's dragon stays defeated, the solo dragon untouched; gateways persisted;

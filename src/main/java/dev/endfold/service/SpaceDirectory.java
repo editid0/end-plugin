@@ -28,6 +28,7 @@ public final class SpaceDirectory {
     private final Map<UUID, Map<UUID, Membership>> membersBySpace = new ConcurrentHashMap<>();
     private final Map<UUID, Set<UUID>> spacesByPlayer = new ConcurrentHashMap<>();
     private final Map<UUID, PlayerProfile> profiles = new ConcurrentHashMap<>();
+    private final Map<String, Set<UUID>> flags = new ConcurrentHashMap<>();
 
     public void load(Collection<EndSpace> allSpaces, Collection<Membership> allMembers, Collection<PlayerProfile> allProfiles) {
         spaces.clear();
@@ -35,6 +36,7 @@ public final class SpaceDirectory {
         membersBySpace.clear();
         spacesByPlayer.clear();
         profiles.clear();
+        flags.clear();
         allSpaces.forEach(this::putSpace);
         allMembers.forEach(this::putMember);
         allProfiles.forEach(this::putProfile);
@@ -75,6 +77,13 @@ public final class SpaceDirectory {
     }
 
     public void putProfile(PlayerProfile p) { profiles.put(p.playerUuid(), p); }
+
+    public void putFlag(UUID player, String flag) { flags.computeIfAbsent(flag, k -> ConcurrentHashMap.newKeySet()).add(player); }
+
+    public boolean hasFlag(UUID player, String flag) {
+        Set<UUID> s = flags.get(flag);
+        return s != null && s.contains(player);
+    }
 
     public void setSelected(UUID player, UUID spaceId) {
         profiles.computeIfPresent(player, (k, v) -> v.withSelected(spaceId));

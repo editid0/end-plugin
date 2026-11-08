@@ -1,25 +1,26 @@
 Endfold integration results, phase 2, server 26.3-2657-9002a55 (MC: 26.3)
-pass=25 fail=0 skip=0
+pass=26 fail=0 skip=0
 PASS | both spaces still exist
 PASS | alice still belongs to both
 PASS | bob's selection persisted
 PASS | alice's selection persisted
-PASS | group membership roles persisted | [Membership[spaceId=d0d719eb-b3d0-4f2b-b041-87442da0749e, playerUuid=faa5dca3-c3d4-354b-ae1b-dde9e5a14b3b, role=OWNER, joinedAt=1794105673201], Membership[spaceId=d0d719eb-b3d0-4f2b-b041-87442da0749e, playerUuid=10920508-d5d8-3eed-93d2-92f193afe7d7, role=MEMBER, joinedAt=1794105673396]]
+PASS | portal-trip unlock persisted across restart
+PASS | group membership roles persisted | [Membership[spaceId=3b3463ed-f1fb-4b6c-b121-67319b833e9d, playerUuid=faa5dca3-c3d4-354b-ae1b-dde9e5a14b3b, role=OWNER, joinedAt=1794108026580], Membership[spaceId=3b3463ed-f1fb-4b6c-b121-67319b833e9d, playerUuid=10920508-d5d8-3eed-93d2-92f193afe7d7, role=MEMBER, joinedAt=1794108026774]]
 PASS | worlds are not loaded until needed (lazy)
 PASS | solo world survived restart
 PASS | group world survived restart
 PASS | group dragon remains defeated, solo dragon untouched
 PASS | gateways persisted
-PASS | per-space return location persisted | Optional[ReturnLocation[playerUuid=10920508-d5d8-3eed-93d2-92f193afe7d7, spaceId=d0d719eb-b3d0-4f2b-b041-87442da0749e, worldUuid=fba17c1e-d394-4194-b6da-deaf89da0bcd, worldName=world, x=0.5, y=200.0, z=0.5, yaw=0.0, pitch=0.0]]
-PASS | logout position restored | endspace_d0d719eb@3,90,3 expected endspace_d0d719eb@3,90,3
-PASS | personal chest contents survived restart without re-roll | - - DIAMONDx1 - - - DIAMONDx1 - - - - - - - - - - - - DIAMOND_CHESTPLATEx1 - DIAMONDx1 - - DIAMONDx1 GOLDEN_HORSE_ARMORx1 -
+PASS | per-space return location persisted | Optional[ReturnLocation[playerUuid=10920508-d5d8-3eed-93d2-92f193afe7d7, spaceId=3b3463ed-f1fb-4b6c-b121-67319b833e9d, worldUuid=8f59ca29-417f-46e2-98e7-43b4ac309810, worldName=world, x=0.5, y=200.0, z=0.5, yaw=0.0, pitch=0.0]]
+PASS | logout position restored | endspace_3b3463ed@3,90,3 expected endspace_3b3463ed@3,90,3
+PASS | personal chest contents survived restart without re-roll | - - BEETROOT_SEEDSx1 - - BEETROOT_SEEDSx3 DIAMOND_HELMETx1 DIAMOND_SPEARx1 - - - - - - - - - IRON_SWORDx1 - - - - - - - - -
 PASS | item taken from the chest is still in bob's inventory
 PASS | bob kept exactly the elytra he claimed | have 1
 PASS | elytra claim persisted | claims=1
 PASS | no undelivered elytra left in the outbox | pending=0
-PASS | backup zip exists | /private/tmp/claude-501/-Users-editid-Documents-code-end-plugin/43b4b2a6-f03e-457f-8b03-6eb547b85bf5/scratchpad/it11/plugins/Endfold/backups/decb6ad6/decb6ad6-20261108-024333-it.zip
+PASS | backup zip exists | /private/tmp/claude-501/-Users-editid-Documents-code-end-plugin/43b4b2a6-f03e-457f-8b03-6eb547b85bf5/scratchpad/it12/plugins/Endfold/backups/b5010bc4/b5010bc4-20261108-032247-it.zip
 PASS | restore brought back the backed-up blocks | DIAMOND_BLOCK
-PASS | space to delete has a world folder | /private/tmp/claude-501/-Users-editid-Documents-code-end-plugin/43b4b2a6-f03e-457f-8b03-6eb547b85bf5/scratchpad/it11/world/dimensions/endspace/83b1a467
+PASS | space to delete has a world folder | /private/tmp/claude-501/-Users-editid-Documents-code-end-plugin/43b4b2a6-f03e-457f-8b03-6eb547b85bf5/scratchpad/it12/world/dimensions/endspace/f55aa371
 PASS | deleted space removed from the directory
 PASS | world folder moved out of the level
 PASS | world folder kept in plugins/Endfold/trash (never deleted outright)

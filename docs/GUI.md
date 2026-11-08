@@ -10,7 +10,7 @@ All texts, icons and titles are in `plugins/Endfold/gui.yml` (`gui.icons.<name>`
 | Word | Meaning |
 |---|---|
 | **Select** | Make your End portals lead to this EndSpace. Nothing else changes. |
-| **Enter** | Travel there right now. |
+| **Enter** | Travel there right now. Depending on `portals.direct-teleport` this is locked until you have used a real End portal once (the button explains why), or disabled entirely. |
 | **Return** | Go back to the overworld spot you came from. You stay a member. |
 | **Leave** | Give up your membership (asks for confirmation). Your other EndSpaces are unaffected. |
 | **Disband** | Owner only: archive the EndSpace. The world is kept and staff can restore it. |

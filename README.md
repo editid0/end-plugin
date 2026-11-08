@@ -59,6 +59,8 @@ Real-server integration tests are run separately: `./testkit/run-integration.sh`
    * **Invitations** - accept, decline or cancel invitations without typing ids.
    * **Achievements** - your individual End progression.
 3. Leaving an EndSpace through its exit portal returns you to where you entered from.
+4. By default, teleporting into your End from the menu (*Enter now*) unlocks only after you have reached the End
+   through a stronghold's End portal once; servers can allow it always or never (`portals.direct-teleport`).
 
 ## Documentation
 

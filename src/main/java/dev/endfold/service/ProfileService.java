@@ -14,7 +14,22 @@ import java.util.concurrent.CompletableFuture;
 public final class ProfileService {
     private final ServiceContext ctx;
 
+    /** Set the first time a player enters any EndSpace through a real End portal (the stronghold route). */
+    public static final String FLAG_END_PORTAL_USED = "end_portal_used";
+
     public ProfileService(ServiceContext ctx) { this.ctx = ctx; }
+
+    /** Records a per-player flag (idempotent). @return true if it was newly set */
+    public CompletableFuture<Result<Boolean>> setFlag(UUID player, String flag) {
+        return ctx.tx("set-flag", tx -> {
+            boolean fresh = ctx.repo.profiles().setFlag(tx, player, flag, ctx.now());
+            tx.afterCommit(() -> ctx.dir.putFlag(player, flag));
+            return fresh;
+        });
+    }
+
+    /** Cache read; true once {@link #setFlag} committed for this player. */
+    public boolean hasFlag(UUID player, String flag) { return ctx.dir.hasFlag(player, flag); }
 
     public CompletableFuture<Result<PlayerProfile>> seen(UUID player, String name) {
         return ctx.tx("profile-seen", tx -> {

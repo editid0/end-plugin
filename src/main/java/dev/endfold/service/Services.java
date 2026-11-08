@@ -36,6 +36,9 @@ public final class Services {
             var members = ctx.repo.members().listAll(tx);
             var profiles = ctx.repo.profiles().listAll(tx);
             ctx.dir.load(spaces, members, profiles);
+            for (java.util.UUID p : ctx.repo.profiles().playersWithFlag(tx, ProfileService.FLAG_END_PORTAL_USED)) {
+                ctx.dir.putFlag(p, ProfileService.FLAG_END_PORTAL_USED);
+            }
             return null;
         });
     }

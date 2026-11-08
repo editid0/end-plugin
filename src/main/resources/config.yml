@@ -131,6 +131,17 @@ portals:
   entity-policy: BLOCK
   # Seconds a player must wait between two portal routings (prevents loops and spam).
   cooldown-seconds: 3
+  # "Direct teleport" = travelling into an EndSpace from the menu ("Enter now") or with /end enter, without walking
+  # through an End portal. Leaving an EndSpace (Return / /end exit) is always allowed.
+  direct-teleport:
+    # ALWAYS:       players may always teleport straight into their EndSpaces.
+    # AFTER_PORTAL: only after they have entered an End through a real End portal at least once (i.e. found a
+    #               stronghold and activated its portal). Recorded per player, not per EndSpace.
+    # NEVER:        End portals are the only way in.
+    mode: AFTER_PORTAL
+    # With AFTER_PORTAL, also accept players who already have the vanilla advancement "The End?" (story/enter_the_end),
+    # e.g. players who reached the End before Endfold was installed.
+    count-vanilla-advancement: true
 
 gui:
   enabled: true

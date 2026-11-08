@@ -46,4 +46,13 @@ public final class SqlProfileRepository implements ProfileRepository {
     @Override public List<PlayerProfile> listAll(Tx tx) throws SQLException {
         return tx.query("SELECT * FROM end_player_profiles", SqlProfileRepository::map);
     }
+
+    @Override public boolean setFlag(Tx tx, UUID player, String flag, long now) throws SQLException {
+        return tx.update("INSERT INTO end_player_flags(player_uuid, flag, set_at) VALUES (?,?,?) ON CONFLICT(player_uuid, flag) DO NOTHING",
+                player, flag, now) == 1;
+    }
+
+    @Override public List<UUID> playersWithFlag(Tx tx, String flag) throws SQLException {
+        return tx.query("SELECT player_uuid FROM end_player_flags WHERE flag=?", rs -> Tx.uuid(rs, "player_uuid"), flag);
+    }
 }

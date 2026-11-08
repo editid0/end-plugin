@@ -54,7 +54,11 @@ final class MainMenu extends Menu {
                         Messages.comp("count", incoming == null ? msg().get("gui.state.progress-loading") : Component.text(in)))
                 .amount(Math.max(1, in)).glow(in > 0).build(), c -> mgr.openInvitations(c.player()));
 
-        if (sel.isPresent() && dir.canEnter(sel.get().id(), viewerId)) {
+        var direct = plugin.router().directAccess(viewer());
+        if (sel.isPresent() && dir.canEnter(sel.get().id(), viewerId) && direct != dev.endfold.portal.PortalRouter.DirectAccess.ALLOWED) {
+            set(20, ui.item("disabled", Material.BARRIER, direct == dev.endfold.portal.PortalRouter.DirectAccess.DISABLED
+                    ? "gui.main.enter-disabled" : "gui.main.enter-locked"));
+        } else if (sel.isPresent() && dir.canEnter(sel.get().id(), viewerId)) {
             EndSpace s = sel.get();
             set(20, ui.item("enter", Material.ENDER_PEARL, "gui.main.enter", Messages.arg("space", s.name())), c -> {
                 c.player().closeInventory();

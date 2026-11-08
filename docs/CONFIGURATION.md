@@ -64,6 +64,8 @@ disables a system. Missing message keys fall back to the bundled defaults.
 | `portals.fallback-world` | `""` | World whose spawn is the last-resort return point (blank = main world). |
 | `portals.entity-policy` | `BLOCK` | `BLOCK` or `VANILLA_LOCAL` (allow gateways for mobs/items within an EndSpace). |
 | `portals.cooldown-seconds` | `3` | Between two portal routings for the same player. |
+| `portals.direct-teleport.mode` | `AFTER_PORTAL` | Teleporting into an EndSpace from the menu or `/end enter` (no portal): `ALWAYS`, `AFTER_PORTAL` (only after the player has entered an End through a real End portal once - i.e. found a stronghold) or `NEVER` (portals only). Leaving is always allowed. Bypass: `endfold.bypass.direct-teleport`. |
+| `portals.direct-teleport.count-vanilla-advancement` | `true` | With `AFTER_PORTAL`, players who already have the vanilla "The End?" advancement count as unlocked (useful when installing on an existing server). |
 | `gui.enabled` | `true` | If false, `/end` sub-commands print text instead of opening menus. |
 | `gui.use-access-item` | `false` | Give an item that opens the menu. |
 | `gui.access-item-material` | `ENDER_EYE` | Its material. |

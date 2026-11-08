@@ -24,17 +24,32 @@ class MigrationRunnerTest {
         return new MigrationRunner(db, log, name -> getClass().getClassLoader().getResourceAsStream(name));
     }
 
-    @Test void freshDatabaseAppliesV1() {
+    @Test void freshDatabaseAppliesAllMigrations() {
         MigrationRunner r = runner();
-        assertEquals(r.load().size(), r.migrate());
-        assertEquals(1, r.currentVersion());
+        int latest = r.load().size();
+        assertEquals(latest, r.migrate());
+        assertEquals(latest, r.currentVersion());
+        assertEquals(1L, count("SELECT COUNT(*) FROM sqlite_master WHERE name='end_player_flags'"));
         assertEquals(1L, count("SELECT COUNT(*) FROM sqlite_master WHERE name='end_spaces'"));
     }
 
     @Test void rerunIsIdempotent() {
         runner().migrate();
         assertEquals(0, runner().migrate());
-        assertEquals(1, runner().currentVersion());
+        assertEquals(runner().load().size(), runner().currentVersion());
+    }
+
+    /** An existing V1 installation (with data) is upgraded to the latest schema without losing rows. */
+    @Test void upgradesExistingV1Database() {
+        MigrationRunner v1Only = new MigrationRunner(db, log, name -> name.endsWith("index.txt")
+                ? new java.io.ByteArrayInputStream("V1__init.sql\n".getBytes())
+                : getClass().getClassLoader().getResourceAsStream(name));
+        assertEquals(1, v1Only.migrate());
+        db.txBlocking(tx -> tx.update("INSERT INTO end_player_profiles(player_uuid, last_name, first_seen, last_seen) VALUES ('p','Alice',1,1)"));
+        assertEquals(runner().load().size() - 1, runner().migrate());
+        assertEquals(runner().load().size(), runner().currentVersion());
+        assertEquals(1L, count("SELECT COUNT(*) FROM end_player_profiles"));
+        assertEquals(0L, count("SELECT COUNT(*) FROM end_player_flags"));
     }
 
     @Test void checksumMismatchThrows() {

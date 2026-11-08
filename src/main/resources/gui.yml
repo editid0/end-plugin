@@ -188,6 +188,18 @@ gui:
         - "<gray>Teleports you to <white><space></white> now."
         - ""
         - "<#7DD3FC>> <white>Click</white> <gray>to travel"
+    enter-locked:
+      name: "<#F87171>Find the End first"
+      lore:
+        - "<gray>Travel through an End portal in a"
+        - "<gray>stronghold once to unlock teleporting"
+        - "<gray>to your End worlds from this menu."
+    enter-disabled:
+      name: "<#F87171>Use an End portal"
+      lore:
+        - "<gray>On this server, End worlds can only"
+        - "<gray>be reached through an End portal."
+        - "<gray>Your selected End is where it leads."
     enter-none:
       name: "<#F87171>No End world selected"
       lore:
@@ -322,6 +334,17 @@ gui:
         - "<gray>Your selected portal destination stays the same."
         - ""
         - "<#7DD3FC>> <white>Click</white> <gray>to travel"
+    enter-locked:
+      name: "<#F87171>Find the End first"
+      lore:
+        - "<gray>Travel through an End portal in a"
+        - "<gray>stronghold once to unlock teleporting here."
+        - "<gray>Tip: <white>Select</white> this End - portals lead to it."
+    enter-disabled:
+      name: "<#F87171>Use an End portal"
+      lore:
+        - "<gray>Teleporting is disabled on this server."
+        - "<gray><white>Select</white> this End, then use an End portal."
     enter-no:
       name: "<#F87171>Cannot enter"
       lore:

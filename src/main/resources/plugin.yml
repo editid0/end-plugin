@@ -24,6 +24,9 @@ permissions:
   endfold.public:
     description: Browse public expeditions and list your groups publicly.
     default: true
+  endfold.bypass.direct-teleport:
+    description: Teleport into your EndSpaces from the menu or /end enter regardless of portals.direct-teleport.
+    default: op
   endfold.admin:
     description: Access to /endfold administration (read-only parts).
     default: op

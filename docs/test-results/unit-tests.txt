@@ -1,10 +1,11 @@
 Unit test results (./mvnw clean package, 2026-11-08, JDK 27.0.1.0.3)
-dev.endfold.db.MigrationRunnerTest            Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
+dev.endfold.db.MigrationRunnerTest            Tests run: 10, Failures: 0, Errors: 0, Skipped: 0
 dev.endfold.model.ModelTest                   Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
 dev.endfold.service.ElytraServiceTest         Tests run: 10, Failures: 0, Errors: 0, Skipped: 0
 dev.endfold.service.LootServiceTest           Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
 dev.endfold.service.MembershipServiceTest     Tests run: 30, Failures: 0, Errors: 0, Skipped: 0
 dev.endfold.service.PartySwitchingTest        Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+dev.endfold.service.PlayerFlagTest            Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
 dev.endfold.service.ProfileServiceTest        Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
 dev.endfold.service.ProgressServiceTest       Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
 dev.endfold.service.ReviewFixesTest           Tests run: 3, Failures: 0, Errors: 0, Skipped: 0

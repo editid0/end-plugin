@@ -79,7 +79,11 @@ final class SpaceMenu extends Menu {
             });
         }
 
-        if (canEnter) {
+        var direct = plugin.router().directAccess(viewer());
+        if (canEnter && direct != dev.endfold.portal.PortalRouter.DirectAccess.ALLOWED && !inside) {
+            set(12, ui.item("disabled", Material.BARRIER, direct == dev.endfold.portal.PortalRouter.DirectAccess.DISABLED
+                    ? "gui.space.enter-disabled" : "gui.space.enter-locked"));
+        } else if (canEnter) {
             set(12, ui.item("enter", Material.ENDER_PEARL, "gui.space.enter", Messages.arg("space", s.name())), c -> {
                 if (!plugin.services().dir().canEnter(spaceId, viewerId)) {
                     refresh();

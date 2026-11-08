@@ -62,6 +62,10 @@ final class SpacesMenu extends PaginatedMenu<EndSpace> {
                 msg().send(p, "gui.spaces.cannot-enter");
                 return;
             }
+            if (plugin.router().directAccess(p) != dev.endfold.portal.PortalRouter.DirectAccess.ALLOWED) {
+                plugin.router().enter(p, s, false); // sends the explanation, does not teleport
+                return;
+            }
             p.closeInventory();
             plugin.actions().enter(p, s);
         } else if (c.right()) {

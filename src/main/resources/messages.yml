@@ -111,6 +111,9 @@ portal:
   no-destination: "<#F87171>You have no End selected. Open <white>/end</white> to create or choose one."
   cooldown: "<gray>Please wait a moment before using the portal again."
   fallback-used: "<gray>Your previous location was unavailable; you were sent to spawn."
+  direct-locked: "<#F87171>You have to find a stronghold and travel through an End portal once before you can teleport to the End directly."
+  direct-disabled: "<#F87171>Direct teleporting to the End is disabled on this server. Use an End portal."
+  direct-unlocked: "<#4ADE80>You found your way to the End! From now on you can also travel here from <white>/end</white>."
 
 dragon:
   fight-started: "<#C084FC>The Ender Dragon of <white><space></white> awakens!"

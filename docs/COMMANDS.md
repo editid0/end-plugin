@@ -13,7 +13,7 @@ open the matching menu. Aliases: `/endspace`, `/endspaces`.
 | `/end solo` | Create (if needed) and select your personal End. *(endfold.create)* |
 | `/end create [name]` | No name: open the creation wizard. With a name: create a group EndSpace. *(endfold.create)* |
 | `/end select [id]` | Make End portals lead to that EndSpace. Never teleports, never changes memberships. |
-| `/end enter [id]` | Travel now to the selected (or given) EndSpace. |
+| `/end enter [id]` | Travel now to the selected (or given) EndSpace. Subject to `portals.direct-teleport`: by default only after you have entered an End through a real End portal once. |
 | `/end exit` | Leave the EndSpace you are in and return to where you entered from. |
 | `/end info [id]` | Open the EndSpace's detail menu. |
 | `/end members [id]` | Open the members menu (chat list if menus are disabled). |
@@ -74,6 +74,7 @@ EndSpace name.
 | `endfold.invite` | everyone | Invite players (still subject to your role in the group) |
 | `endfold.join` | everyone | Join / request to join public expeditions |
 | `endfold.public` | everyone | Browse expeditions and list your groups publicly |
+| `endfold.bypass.direct-teleport` | op | Use "Enter now" / `/end enter` regardless of `portals.direct-teleport` |
 | `endfold.admin` | op | `/endfold` (parent of all admin nodes below) |
 | `endfold.admin.reload` | op | Reload configuration |
 | `endfold.admin.worlds` | op | Inspect, load/unload, repair, manage memberships |

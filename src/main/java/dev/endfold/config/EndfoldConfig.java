@@ -20,6 +20,9 @@ public final class EndfoldConfig {
 
     public enum TextInput { DIALOG, CHAT }
 
+    /** Whether players may teleport into an EndSpace without walking through an End portal (menu / /end enter). */
+    public enum DirectTeleport { ALWAYS, AFTER_PORTAL, NEVER }
+
     private final List<String> problems = new ArrayList<>();
 
     // instances
@@ -77,6 +80,8 @@ public final class EndfoldConfig {
     public final String fallbackWorld;
     public final EntityPolicy entityPolicy;
     public final int portalCooldownSeconds;
+    public final DirectTeleport directTeleport;
+    public final boolean directTeleportVanillaAdvancement;
     // gui
     public final boolean guiEnabled;
     public final boolean useAccessItem;
@@ -152,6 +157,8 @@ public final class EndfoldConfig {
         fallbackWorld = str(c, "portals.fallback-world", "");
         entityPolicy = enumVal(c, "portals.entity-policy", EntityPolicy.class, EntityPolicy.BLOCK);
         portalCooldownSeconds = range(c, "portals.cooldown-seconds", 3, 0, 60);
+        directTeleport = enumVal(c, "portals.direct-teleport.mode", DirectTeleport.class, DirectTeleport.AFTER_PORTAL);
+        directTeleportVanillaAdvancement = c.getBoolean("portals.direct-teleport.count-vanilla-advancement", true);
 
         guiEnabled = c.getBoolean("gui.enabled", true);
         useAccessItem = c.getBoolean("gui.use-access-item", false);

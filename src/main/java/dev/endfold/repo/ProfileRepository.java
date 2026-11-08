@@ -23,4 +23,10 @@ public interface ProfileRepository {
     List<UUID> clearSelectedForSpace(Tx tx, UUID spaceId) throws Exception;
 
     List<PlayerProfile> listAll(Tx tx) throws Exception;
+
+    /** Sets a per-player flag once. @return true if newly set */
+    boolean setFlag(Tx tx, UUID player, String flag, long now) throws Exception;
+
+    /** All players having {@code flag}. */
+    List<UUID> playersWithFlag(Tx tx, String flag) throws Exception;
 }
